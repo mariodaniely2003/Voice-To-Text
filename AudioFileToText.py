@@ -55,3 +55,11 @@ def StartLongAudioToText():
                 text = f"{text.capitalize()}. "
                 print(chunk_filename, ":", text)
                 whole_text += text
+                
+def UseMicrophone():
+    r = speech.Recognizer()
+    with speech.Microphone() as source:
+        audio_data = r.record(source, duration=3)
+        print("Recognizing...")
+        text = r.recognize_google(audio_data)
+        print(text)
